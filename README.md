@@ -1,67 +1,67 @@
 # jquery-recaptcha-callback
 #css
-<link ref="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css" />
+&lt;link ref=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.css&quot; /&gt;
 
 Used Libraries
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
-<form id="yourform">
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js&quot;&gt;&lt;/script&gt;
+&lt;form id=&quot;yourform&quot;&gt;
   {insert fields here}
-</form>
+&lt;/form&gt;
 
 
 Simple and Quick Captcha validation
 
-<script>
+&lt;script&gt;
 toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": false,
-  "positionClass": "toast-top-center",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "5000",
-  "extendedTimeOut": "1000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
+  &quot;closeButton&quot;: false,
+  &quot;debug&quot;: false,
+  &quot;newestOnTop&quot;: false,
+  &quot;progressBar&quot;: false,
+  &quot;positionClass&quot;: &quot;toast-top-center&quot;,
+  &quot;preventDuplicates&quot;: false,
+  &quot;onclick&quot;: null,
+  &quot;showDuration&quot;: &quot;300&quot;,
+  &quot;hideDuration&quot;: &quot;1000&quot;,
+  &quot;timeOut&quot;: &quot;5000&quot;,
+  &quot;extendedTimeOut&quot;: &quot;1000&quot;,
+  &quot;showEasing&quot;: &quot;swing&quot;,
+  &quot;hideEasing&quot;: &quot;linear&quot;,
+  &quot;showMethod&quot;: &quot;fadeIn&quot;,
+  &quot;hideMethod&quot;: &quot;fadeOut&quot;
 }
 
 
-jQuery("#yourform").validate({
+jQuery(&quot;#yourform&quot;).validate({
 	   rules: {
 	      // your rules
 	   },
 	   submitHandler: function (form) {
-          jQuery("#bootstrapmodel").modal("show");
+          jQuery(&quot;#bootstrapmodel&quot;).modal(&quot;show&quot;);
               setTimeout(function() {
                   createRecaptcha();
               }, 100);
 
               function ReCapthaCallback() {
-                jQuery("#bootstrapmodel").modal("hide");
+                jQuery(&quot;#bootstrapmodel&quot;).modal(&quot;hide&quot;);
                   var Request;
-                    var serializedData = jQuery("#yourform").serialize();
+                    var serializedData = jQuery(&quot;#yourform&quot;).serialize();
 
                     // fire off the request to /form.php
                     request = jQuery.ajax({
-                            url: "insert url here",
-                            type: "post",
+                            url: &quot;insert url here&quot;,
+                            type: &quot;post&quot;,
                             data: serializedData
                     });
 
                     // callback handler that will be called on success
                     request.done(function (response, textStatus, jqXHR) {
-                            toastr["success"]("test message", "Captcha Confirmation")
-                            jQuery("#name").val('');
-                            jQuery("#email").val('');
-                            jQuery("#contact").val('');
+                            toastr[&quot;success&quot;](&quot;test message&quot;, &quot;Captcha Confirmation&quot;)
+                            jQuery(&quot;#name&quot;).val(&#39;&#39;);
+                            jQuery(&quot;#email&quot;).val(&#39;&#39;);
+                            jQuery(&quot;#contact&quot;).val(&#39;&#39;);
 
                     });
 
@@ -73,27 +73,27 @@ jQuery("#yourform").validate({
               }
 
               function createRecaptcha() {
-                grecaptcha.render("captcha", {sitekey: "SITE KEY HERE", theme: "light",'callback' : ReCapthaCallback,});
+                grecaptcha.render(&quot;captcha&quot;, {sitekey: &quot;SITE KEY HERE&quot;, theme: &quot;light&quot;,&#39;callback&#39; : ReCapthaCallback,});
               }
 
         }
 });
-</script>
+&lt;/script&gt;
 
 // Html Bootstrap modal
-<div class="modal fade" id="bootstrapmodel" data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Confirm Capthca</h4>
-      </div>
-      <div class="modal-body">
-        <div class='col-lg-4'>
-          <div id="captcha"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+&lt;div class=&quot;modal fade&quot; id=&quot;bootstrapmodel&quot; data-backdrop=&quot;static&quot; data-keyboard=&quot;false&quot;&gt;
+  &lt;div class=&quot;modal-dialog&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;div class=&quot;modal-header&quot;&gt;
+        &lt;h4 class=&quot;modal-title&quot;&gt;Confirm Capthca&lt;/h4&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;modal-body&quot;&gt;
+        &lt;div class=&#39;col-lg-4&#39;&gt;
+          &lt;div id=&quot;captcha&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
 
 	   
